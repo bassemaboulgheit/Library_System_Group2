@@ -12,5 +12,17 @@
             Title = title;
             Author = author;
         }
-    }
-}
+        public override string ToString()
+        {
+            return $" Book ID : {Id}  His title : {Title} His author : {Author} ";
+        }
+        public override bool Equals(object? obj)
+        {
+           if (obj is Book b)
+           {
+              return this.Id == b.Id;
+           }
+            return false;
+         }
+     }
+ }
