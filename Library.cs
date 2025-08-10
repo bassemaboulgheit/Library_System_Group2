@@ -62,5 +62,18 @@
                 Console.WriteLine("Book deleted successfully");
             }
         }
+        //-----------------FindBooks---------------------//
+        public int FindBooks(int id)
+        {
+            for (int i = 0; i < books_count; i++)
+            {
+                if (books[i].Id == id)
+                {
+                    return i;
+                }
+
+            }
+            return -1;
+        }
     }       
 }
