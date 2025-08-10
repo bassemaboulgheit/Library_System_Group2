@@ -4,7 +4,114 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+                    
+                        //----------------start main-------------------
+                    
+                        Console.OutputEncoding = System.Text.Encoding.UTF8;
+                        Console.InputEncoding = System.Text.Encoding.UTF8;
+                    
+                        Library library = new Library();
+                    
+                        string[] menu = {
+                            "Add Book",
+                            "Remove Book",
+                            "Add Member",
+                            "Remove Member",
+                            "Borrow Book",
+                            "Return Book",
+                            "List Books",
+                            "List Members",
+                            "Exit"
+                        };
+                    
+                        int currentItem = 0;
+                        ConsoleKeyInfo key;
+                    
+                        while (true)
+                        {
+                    
+                            Console.SetCursorPosition(0, 0);
+                            Console.Write(new string(' ', Console.WindowWidth * (menu.Length + 3)));
+                            Console.SetCursorPosition(0, 0);
+                            Console.WriteLine("Library Management System\n");
+                    
+                            for (int i = 0; i < menu.Length; i++)
+                            {
+                                if (i == currentItem)
+                                {
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.Write($"> {menu[i]}");
+                                    Console.ResetColor();
+                                    Console.WriteLine();
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"  {menu[i]}");
+                                }
+                            }
+                    
+                    
+                            key = Console.ReadKey(true);
+                    
+                            if (key.Key == ConsoleKey.DownArrow)
+                            {
+                                currentItem++;
+                                if (currentItem >= menu.Length) currentItem = 0;
+                            }
+                            else if (key.Key == ConsoleKey.UpArrow)
+                            {
+                                currentItem--;
+                                if (currentItem < 0) currentItem = menu.Length - 1;
+                            }
+                            else if (key.Key == ConsoleKey.Enter)
+                            {
+                                Console.Clear();
+                                switch (currentItem)
+                                {
+                                    case 0:
+                    
+                                        break;
+                    
+                                    case 1:
+                    
+                                        break;
+                    
+                                    case 2:
+                    
+                                        break;
+                    
+                                    case 3:
+                    
+                                        break;
+                    
+                                    case 4:
+                    
+                                        break;
+                    
+                                    case 5:
+                    
+                                        break;
+                    
+                                    case 6:
+                                        break;
+                    
+                                    case 7:
+                                        break;
+                    
+                                    case 8:
+                                        return;
+                                }
+                    
+                                Console.WriteLine("\nPress Enter to return to menu...");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                        }
+                    
+                    }
+                    //-----------------end main------------------
+                   
         }
     }
 }
