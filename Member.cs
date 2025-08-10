@@ -20,6 +20,12 @@ namespace Library_System_Group2
             BorrowedBooks = new int[3];
             BorrowedCount = 0;
         }
+        public override string ToString()
+        {
+            return $"ID: {Id}, Name: {Name}, Borrowed Books: {BorrowedCount}";
+        
+        }
+
 
     }
 }
