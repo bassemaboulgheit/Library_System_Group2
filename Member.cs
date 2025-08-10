@@ -25,6 +25,15 @@ namespace Library_System_Group2
             return $"ID: {Id}, Name: {Name}, Borrowed Books: {BorrowedCount}";
         
         }
+        public override bool Equals(object? obj)
+        {
+            if (obj is Member b)
+            {
+                return this.Id == b.Id;
+            }
+            return false;
+        }
+
 
 
     }
