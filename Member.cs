@@ -48,6 +48,28 @@ namespace Library_System_Group2
                 return false ;
             }
         }
+        public bool MReturnBook(int BookId)
+        {
+            int index = -1;
+            for (int i = 0; i < BorrowedCount; i++)
+            {
+                if (BorrowedBooks[i] == BookId)
+                {
+                    index = i;
+                    break;
+                }
+        
+            }
+            if (index != -1)
+            {
+                BorrowedBooks[index] = 0;
+                BorrowedCount--;
+                return true ;
+        
+            }
+            return false ;
+        
+        }
 
 
 
