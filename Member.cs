@@ -27,6 +27,22 @@ namespace Library_System_Group2
             }
             return false;
         }
+        public bool MBorrowBook(int id)
+        {
+
+            if (BorrowedCount < BorrowedBooks.Length)
+            {
+                BorrowedBooks[BorrowedCount] = id;
+                BorrowedCount++;
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"This member can not borrow more than book {BorrowedBooks.Length} ");
+                return false;
+            }
+        }
+
 
 
     }
