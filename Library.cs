@@ -44,7 +44,7 @@
             int index = FindBooks(id);
             if (index == -1)
             {
-                Console.WriteLine("the book is not found");
+                Console.WriteLine("the book isn't found");
 
             }
             else
