@@ -123,12 +123,29 @@
             }
             else
             {
+                int keptCount = 0;
                 for (int i = 0; i < members_count; i++)
+                {
+                    bool hasBorrowed = false;
+                    for (int j = 0; j < members[i].BorrowedCount; j++)
+                    {
+                        if (members[i].BorrowedBooks[j] != 0)
+                        {
+                            hasBorrowed = true;
+                            break;
+                        }
+                    }
+                    if (hasBorrowed)
+                    {
+                        members[keptCount++] = members[i];
+                    }
+                }
+                for (int i = keptCount; i < members_count; i++)
                 {
                     members[i] = null;
                 }
-                members_count = 0;
-                Console.WriteLine("all members removed successfully");
+                members_count = keptCount;
+                Console.WriteLine($"{members_count} members kept (have borrowed books), others removed successfully");
             }
         }
 
