@@ -57,6 +57,38 @@
             Console.WriteLine("member deleted successfully");
 
         }
+        public void borrowBook(int member_id, int book_id)
+        {
+            int index1 = Find_member(member_id);
+            int index2 = FindBooks(book_id);
+            if (index1 == -1 || index2 == -1)
+            {
+                Console.WriteLine("can not fount member or book");
+            }
+            else
+            {
+                for (int i = 0; i < members[index1].BorrowedCount; i++)
+                {
+                    if (members[index1].BorrowedBooks[i] == book_id)
+                    {
+                        Console.WriteLine("This member already borrowed this book");
+                        return;
+                    }
+                }
+                if (!books[index2].IsAvailable)
+                {
+                    Console.WriteLine("the book is not available");
+                    return;
+                }
+             
+                if (members[index1].MBorrowBook(book_id))
+                {
+                    books[index2].IsAvailable = false;
+                    Console.WriteLine($"member ID : {members[index1].Id} borrow book ID : {books[index2].Id} titled : {books[index2].Title}");
+                }
+            }
+        }
+
  
     }       
 
