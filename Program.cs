@@ -69,37 +69,76 @@
                                 Console.Clear();
                                 switch (currentItem)
                                 {
-                                    case 0:
+                                    case 0:  // add book
+
+                                        Console.Write("enter book id: ");
+                                        int bid = int.Parse(Console.ReadLine());
+                                        Console.Write("enter title: ");
+                                        string title = Console.ReadLine();
+                                        Console.Write("enter author: ");
+                                        string author = Console.ReadLine();
+                                        library.AddBook(new Book(bid, title, author));
+                                                
+                                        break;
+                    
+                                    case 1: // remove book
+                                        
+                                        Console.Write("enter book id: ");
+                                        library.RemoveBook(int.Parse(Console.ReadLine()));
                     
                                         break;
                     
-                                    case 1:
+                                    case 2:  //add member
+
+                                        Console.Write("enter member id: ");
+                                        int mid = int.Parse(Console.ReadLine());
+                                        Console.Write("enter name: ");
+                                        string name = Console.ReadLine();
+                                        library.AddMember(new Member(mid, name));
                     
                                         break;
                     
-                                    case 2:
+                                    case 3: //remove member
+
+                                        Console.Write("enter member id: ");
+                                        library.RemoveMember(int.Parse(Console.ReadLine()));
                     
                                         break;
                     
-                                    case 3:
-                    
+                                    case 4:  //borrow book
+
+                                        Console.Write("enter member id: ");
+                                        int bmid = int.Parse(Console.ReadLine());
+                                        Console.Write("enter book id: ");
+                                        int bbid = int.Parse(Console.ReadLine());
+                                        library.borrowBook(bmid, bbid);
+                                          
                                         break;
                     
-                                    case 4:
-                    
+                                    case 5:  // return book
+
+                                        Console.Write("enter member id: ");
+                                        int rmid = int.Parse(Console.ReadLine());
+                                        Console.Write("enter book id: ");
+                                        int rbid = int.Parse(Console.ReadLine());
+                                        library.ReturnBook(rmid, rbid);
+                                        
                                         break;
                     
-                                    case 5:
-                    
+                                    case 6:  // list books
+
+                                        library.listOfBook();
+          
                                         break;
                     
-                                    case 6:
+                                    case 7:  // list members
+
+                                        library.listOfMember();
+                                        
                                         break;
                     
-                                    case 7:
-                                        break;
-                    
-                                    case 8:
+                                    case 8:  // exit
+                                        
                                         return;
                                 }
                     
