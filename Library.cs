@@ -2,78 +2,53 @@
 {
     public class Library
     {
-        Book[] books;
-        int books_count;
-        Member[] members;
-        int members_count;
-        public Library()
+        ////////ReturnBook////////////
+         public void ReturnBook(int member_id, int book_id)
+    
+        int index1 = Find_member(member_id);
+        int index2 = FindBooks(book_id);
+        if (index1 == -1 || index2 == -1)
         {
-            books = new Book[20];
-            members = new Member[20];
-            books_count = 0;
-            members_count = 0;
+            Console.WriteLine("cannot find member or book");
         }
-        public void AddBook(Book book)
+        else
         {
-        
-            if (books_count >= books.Length)
+            if (members[index1].MReturnBook(book_id))
             {
-                Console.WriteLine("your library is full of books");
+                books[index2].IsAvailable = true;
+                Console.WriteLine($"member : {members[index1].Id} returns book : {books[index2].Id} titled: {books[index2].Title}");
             }
-        
             else
             {
-                if (books_count != 0)
+                Console.WriteLine("this book is not borrowed by this member");
+            }
+        }
+///////////////Find_member////////////////////
+    
+            public int Find_member(int id)
+            {
+                for (int i = 0; i < members_count; i++)
                 {
-                    for (int i = 0; i < books_count; i++)
+                    if (members[i].Id == id)
                     {
-                        if (books[i].Equals(book))
-                        {
-                            Console.WriteLine("the id of book should be unique");
-                            return;
-                        }
+                        return i;
                     }
                 }
-                    books[books_count] = book;
-                    Console.WriteLine("Book added successfully");
-                    books_count++;
+                return -1;
             }
-        }
-        //-------------RemoveBook------------------//
-        public void RemoveBook(int id)
-        {
-            int index = FindBooks(id);
-            if (index == -1)
-            {
-                Console.WriteLine("the book is not found");
+///////////////Find_Book////////////////////
+         public int FindBooks(int id)
+         {
+             for (int i = 0; i < books_count; i++)
+             {
+                 if (books[i].Id == id)
+                 {
+                     return i;
+                 }
         
-            }
-            else
-            {
-                if (!books[index].IsAvailable)
-                {
-                    Console.WriteLine("The book is'nt Available ");
-                    return;
-        
-                }
-                books[index] = books[books_count - 1];
-                books[books_count - 1] = null;
-                books_count--;
-                Console.WriteLine("Book deleted successfully");
-            }
-        }
-        //-----------------FindBooks---------------------//
-        public int FindBooks(int id)
-        {
-            for (int i = 0; i < books_count; i++)
-            {
-                if (books[i].Id == id)
-                {
-                    return i;
-                }
+             }
+             return -1;
+         }
 
-            }
-            return -1;
-        }
-    }       
+    }
 }
