@@ -2,6 +2,50 @@
 {
     public class Library
     {
+        
+        Book[] books;
+        int books_count;
+        Member[] members;
+        int members_count;
+        public Library()
+        {
+            books = new Book[20];
+            members = new Member[20];
+            books_count = 0;
+            members_count = 0;
+        }////////////AddBooK///////////////
+        public void AddBook(Book book)
+        {
+
+            if (books_count >= books.Length)
+            {
+                Console.WriteLine("your library is full of books");
+            }
+
+            else
+            {
+                
+                
+                    for (int i = 0; i < books_count; i++)
+                    {
+                        if (books[i].Equals(book))
+                        {
+                            Console.WriteLine("the id of book should be unique");
+                            return;
+                        }
+                    }
+              
+                books[books_count] = book;
+                Console.WriteLine("Book added successfully");
+                books_count++;
+
+            }
+        }
+        //-------------RemoveBook------------------//
+        public void RemoveBook(int id)
+        {
+            int index = FindBooks(id);
+            if (index == -1)
 
         
         public void AddMember(Member member)
@@ -51,6 +95,7 @@
             }
 
             for (int i = index; i < members_count - 1; i++)
+
             {
                 members[i] = members[i + 1];
             }
@@ -87,6 +132,43 @@
                     books[index2].IsAvailable = false;
                     Console.WriteLine($"member ID : {members[index1].Id} borrow book ID : {books[index2].Id} titled : {books[index2].Title}");
                 }
+                books[books_count - 1] = null;
+                books_count--;
+                Console.WriteLine("Book deleted successfully");
+
+            }
+
+        }
+   }
+     ////////////////Find_member///////////////
+        public int Find_member(int id)
+        {
+            for (int i = 0; i < members_count; i++)
+            {
+                if (members[i].Id == id)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+     ////////////////listOfMember///////////////
+        public void listOfMember()
+        {
+        
+            if (members_count != 0)
+            {
+                for (int i = 0; i < members_count; i++)
+                {
+                    Console.WriteLine(members[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("There is no member in the Library");
+            }
+        }
             }
         }
 
@@ -95,6 +177,6 @@
 
 }
 
-      
+
    
 
