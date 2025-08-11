@@ -62,6 +62,7 @@
                 Console.WriteLine("Book deleted successfully");
             }
         }
+
         public void borrowBook(int member_id, int book_id)
         {
             int index1 = Find_member(member_id);
@@ -83,6 +84,19 @@
                     Console.WriteLine($"member ID : {members[index1].Id} borrow book ID : {books[index2].Id} which his title is : {books[index2].Title}");
                 }
             }
+        }
+        //-----------------FindBooks---------------------//
+        public int FindBooks(int id)
+        {
+            for (int i = 0; i < books_count; i++)
+            {
+                if (books[i].Id == id)
+                {
+                    return i;
+                }
+
+            }
+            return -1;
         }
     }       
 }
