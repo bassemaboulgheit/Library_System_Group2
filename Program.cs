@@ -2,6 +2,52 @@
 {
     internal class Program
     {
+        // start validation for read integer id or string names
+
+        
+          static int ReadInt(string message)
+          {
+              int value;
+              while (true)
+              {
+                  Console.Write(message);
+                  string input = Console.ReadLine();
+                  if (int.TryParse(input, out value))
+                  {
+                      return value;
+                  }
+                  else
+                  {
+        
+                      Console.ForegroundColor = ConsoleColor.Red;
+                      Console.WriteLine(" error: Please enter a number value");
+                      Console.ResetColor();
+                  }
+              }
+          }
+        
+          static string ReadString(string message)
+          {
+              while (true)
+              {
+                  Console.Write(message);
+                  string input = Console.ReadLine();
+                  if (!string.IsNullOrWhiteSpace(input) && !input.Any(char.IsDigit))
+                  {
+                      return input;
+                  }
+                  else
+                  {
+        
+                      Console.ForegroundColor = ConsoleColor.Red;
+                      Console.WriteLine(" error: Please enter letters only");
+                      Console.ResetColor();
+                  }
+              }
+          }
+
+        // end validation  for read integer id or string names
+        
         static void Main(string[] args)
         {
                     
@@ -71,56 +117,45 @@
                                 {
                                     case 0:  // add book
 
-                                        Console.Write("enter book id: ");
-                                        int bid = int.Parse(Console.ReadLine());
-                                        Console.Write("enter title: ");
-                                        string title = Console.ReadLine();
-                                        Console.Write("enter author: ");
-                                        string author = Console.ReadLine();
+                                        int bid = ReadInt("enter book id: ");
+                                        string title = ReadString("enter title: ");
+                                        string author = ReadString("enter author: ");
                                         library.AddBook(new Book(bid, title, author));
                                                 
                                         break;
                     
                                     case 1: // remove book
                                         
-                                        Console.Write("enter book id: ");
-                                        library.RemoveBook(int.Parse(Console.ReadLine()));
+                                        library.RemoveBook(ReadInt("enter book id: "));
                     
                                         break;
                     
                                     case 2:  //add member
 
-                                        Console.Write("enter member id: ");
-                                        int mid = int.Parse(Console.ReadLine());
-                                        Console.Write("enter name: ");
-                                        string name = Console.ReadLine();
+                                        int mid = ReadInt("enter member id: ");
+                                        string name = ReadString("enter name: ");
                                         library.AddMember(new Member(mid, name));
                     
                                         break;
                     
                                     case 3: //remove member
 
-                                        Console.Write("enter member id: ");
-                                        library.RemoveMember(int.Parse(Console.ReadLine()));
+                                        library.RemoveMember(ReadInt("enter member id: "));
                     
                                         break;
                     
                                     case 4:  //borrow book
 
-                                        Console.Write("enter member id: ");
-                                        int bmid = int.Parse(Console.ReadLine());
-                                        Console.Write("enter book id: ");
-                                        int bbid = int.Parse(Console.ReadLine());
+                                        int bmid = ReadInt("enter member id: ");
+                                        int bbid = ReadInt("enter book id: ");
                                         library.borrowBook(bmid, bbid);
                                           
                                         break;
                     
                                     case 5:  // return book
 
-                                        Console.Write("enter member id: ");
-                                        int rmid = int.Parse(Console.ReadLine());
-                                        Console.Write("enter book id: ");
-                                        int rbid = int.Parse(Console.ReadLine());
+                                        int rmid = ReadInt("enter member id: ");
+                                        int rbid = ReadInt("enter book id: ");
                                         library.ReturnBook(rmid, rbid);
                                         
                                         break;
