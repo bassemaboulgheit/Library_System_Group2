@@ -187,7 +187,7 @@
     }  
  /////////////////////////borrowBook/////////////////////////
       
-        public void borrowBook(int member_id, int book_id)
+       public void borrowBook(int member_id, int book_id)
         {
             int index1 = Find_member(member_id);
             int index2 = FindBooks(book_id);
@@ -216,12 +216,7 @@
                     books[index2].IsAvailable = false;
                     Console.WriteLine($"member ID : {members[index1].Id} borrow book ID : {books[index2].Id} titled : {books[index2].Title}");
                 }
-                books[books_count - 1] = null;
-                books_count--;
-                Console.WriteLine("Book deleted successfully");
-
             }
-
         }
   ////////////////////returnBook//////////////////////
  
