@@ -194,22 +194,48 @@
                     
                     
                     // remove all books
-                    public void RemoveAllBooks()
-                    {
-                        if (books_count == 0)
-                        {
-                            Console.WriteLine("no books to remove");
-                        }
-                        else
-                        {
-                            for (int i = 0; i < books_count; i++)
-                            {
-                                books[i] = null;
-                            }
-                            books_count = 0;
-                            Console.WriteLine("all books removed successfully");
-                        }
-                    }
+                     public void RemoveAllBooks()
+                     {
+                         if (books_count == 0)
+                         {
+                             Console.WriteLine("no books to remove");
+                         }
+                         else
+                         {
+                             int keptCount = 0;
+                             for (int i = 0; i < books_count; i++)
+                             {
+                                 bool isBorrowed = false;
+                    
+                                 for (int m = 0; m < members_count; m++)
+                                 {
+                                     for (int b = 0; b < members[m].BorrowedCount; b++)
+                                     {
+                                         if (members[m].BorrowedBooks[b] == books[i].Id)
+                                         {
+                                             isBorrowed = true;
+                                             break;
+                                         }
+                                     }
+                                     if (isBorrowed) break;
+                                 }
+                    
+                                 if (isBorrowed)
+                                 {
+                                     books[keptCount++] = books[i];
+                                 }
+                             }
+                    
+                             for (int i = keptCount; i < books_count; i++)
+                             {
+                                 books[i] = null;
+                             }
+                    
+                             books_count = keptCount;
+                    
+                             Console.WriteLine($"{books_count} books kept (borrowed), others removed successfully");
+                         }
+                     }
                     
                     //-------------------------end new methods over required Book------------------------------//
 
