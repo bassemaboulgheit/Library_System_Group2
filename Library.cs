@@ -62,6 +62,7 @@
                 books[books_count - 1] = null;
                 books_count--;
                 Console.WriteLine("Book deleted successfully");
+                
             }
       }
       
