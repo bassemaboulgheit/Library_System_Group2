@@ -173,7 +173,46 @@
         }
 
 
-            Console.WriteLine("test 3");
+           
+                    //-------------------------start new methods over required Book------------------------------//
+                    
+                    // edit book
+                    public void EditBook(int id, string newTitle, string newAuthor)
+                    {
+                        int index = FindBooks(id);
+                        if (index == -1)
+                        {
+                            Console.WriteLine("book not found");
+                        }
+                        else
+                        {
+                            books[index].Title = newTitle;
+                            books[index].Author = newAuthor;
+                            Console.WriteLine("book updated successfully");
+                        }
+                    }
+                    
+                    
+                    // remove all books
+                    public void RemoveAllBooks()
+                    {
+                        if (books_count == 0)
+                        {
+                            Console.WriteLine("no books to remove");
+                        }
+                        else
+                        {
+                            for (int i = 0; i < books_count; i++)
+                            {
+                                books[i] = null;
+                            }
+                            books_count = 0;
+                            Console.WriteLine("all books removed successfully");
+                        }
+                    }
+                    
+                    //-------------------------end new methods over required Book------------------------------//
+
  
     }       
 
