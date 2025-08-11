@@ -90,6 +90,45 @@
             }
         }
 
+
+        //-------------------------start new methods over required for member------------------------------//
+
+
+        // edit member
+        public void EditMember(int id, string newName)
+        {
+            int index = Find_member(id);
+            if (index == -1)
+            {
+                Console.WriteLine("member not found");
+            }
+            else
+            {
+                members[index].Name = newName;
+                Console.WriteLine("member updated successfully");
+            }
+        }
+        
+        // remove all members
+        public void RemoveAllMembers()
+        {
+            if (members_count == 0)
+            {
+                Console.WriteLine("no members to remove");
+            }
+            else
+            {
+                for (int i = 0; i < members_count; i++)
+                {
+                    members[i] = null;
+                }
+                members_count = 0;
+                Console.WriteLine("all members removed successfully");
+            }
+        }
+
+//-------------------------end new methods over required for member------------------------------//
+
  
     }       
 
