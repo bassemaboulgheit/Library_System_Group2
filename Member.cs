@@ -19,6 +19,14 @@ namespace Library_System_Group2
             BorrowedBooks = new int[3];
             BorrowedCount = 0;
         }
+        public override bool Equals(object? obj)
+        {
+            if (obj is Member b)
+            {
+                return this.Id == b.Id;
+            }
+            return false;
+        }
 
 
     }
