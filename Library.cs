@@ -172,6 +172,8 @@
             }
         }
 
+
+            Console.WriteLine("test 3");
  
     }       
 
