@@ -86,7 +86,12 @@
                 {
                     books[index2].IsAvailable = false;
                     Console.WriteLine($"member ID : {members[index1].Id} borrow book ID : {books[index2].Id} titled : {books[index2].Title}");
+                    Console.WriteLine("Book is borrowed successfully");
+
                 }
+                 books[books_count - 1] = null; 
+                 books_count--;
+                 Console.WriteLine("Book deleted from library successfully");
             }
         }
 
