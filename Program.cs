@@ -122,7 +122,16 @@
                                 {
                                     case 0:  // add book
 
-                                        int bid = ReadInt("enter book id: ");
+                                         int bid;
+                                          while (true)
+                                          {
+                                              bid = ReadInt("Enter book id: ");
+                                              if (bid > 0) break;
+                                        
+                                              Console.ForegroundColor = ConsoleColor.Red;
+                                              Console.WriteLine("Book ID cannot be negative or zero.");
+                                              Console.ResetColor();
+                                          }
                                         string title = ReadString("enter title: ");
                                         string author = ReadString("enter author: ");
                                         library.AddBook(new Book(bid, title, author));
@@ -137,7 +146,16 @@
                     
                                     case 2:  //add member
 
-                                        int mid = ReadInt("enter member id: ");
+                                          int mid;
+                                                while (true)
+                                       {
+                                           mid = ReadInt("Enter book id: ");
+                                           if (mid > 0) break;
+                                    
+                                           Console.ForegroundColor = ConsoleColor.Red;
+                                           Console.WriteLine("Book ID cannot be negative or zero.");
+                                           Console.ResetColor();
+                                       }
                                         string name = ReadString("enter name: ");
                                         library.AddMember(new Member(mid, name));
                     
