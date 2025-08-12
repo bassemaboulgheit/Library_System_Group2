@@ -218,7 +218,9 @@
                 }
             }
         }
+
   ////////////////////returnBook//////////////////////
+
  
           public void ReturnBook(int member_id, int book_id)
           {
@@ -241,7 +243,70 @@
                   }
              }
 
-       }
+         }
+  //-------------------------start new methods over required Book------------------------------//
+                    
+                    // edit book////
+                    public void EditBook(int id, string newTitle, string newAuthor)
+                    {
+                        int index = FindBooks(id);
+                        if (index == -1)
+                        {
+                            Console.WriteLine("book not found");
+                        }
+                        else
+                        {
+                            books[index].Title = newTitle;
+                            books[index].Author = newAuthor;
+                            Console.WriteLine("book updated successfully");
+                        }
+                    }
+
+               // remove all books///
+                     public void RemoveAllBooks()
+                     {
+                         if (books_count == 0)
+                         {
+                             Console.WriteLine("no books to remove");
+                         }
+                         else
+                         {
+                             int keptCount = 0;
+                             for (int i = 0; i < books_count; i++)
+                             {
+                                 bool isBorrowed = false;
+                    
+                                 for (int m = 0; m < members_count; m++)
+                                 {
+                                     for (int b = 0; b < members[m].BorrowedCount; b++)
+                                     {
+                                         if (members[m].BorrowedBooks[b] == books[i].Id)
+                                         {
+                                             isBorrowed = true;
+                                             break;
+                                         }
+                                     }
+                                     if (isBorrowed) break;
+                                 }
+                    
+                                 if (isBorrowed)
+                                 {
+                                     books[keptCount++] = books[i];
+                                 }
+                             }
+                    
+                             for (int i = keptCount; i < books_count; i++)
+                             {
+                                 books[i] = null;
+                             }
+                    
+                             books_count = keptCount;
+                    
+                             Console.WriteLine($"{books_count} books kept (borrowed), others removed successfully");
+                         }
+                     }
+                    
+                    //-------------------------end new methods over required Book------------------------------//
    
     }
  }
