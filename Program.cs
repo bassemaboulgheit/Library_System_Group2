@@ -67,6 +67,11 @@
                             "Return Book",
                             "List Books",
                             "List Members",
+                            //new methods over required
+                            "Edit Book",
+                            "Edit Member",
+                            "Remove All Books",
+                            "Remove All Members",            
                             "Exit"
                         };
                     
@@ -117,7 +122,16 @@
                                 {
                                     case 0:  // add book
 
-                                        int bid = ReadInt("enter book id: ");
+                                         int bid;
+                                          while (true)
+                                          {
+                                              bid = ReadInt("Enter book id: ");
+                                              if (bid > 0) break;
+                                        
+                                              Console.ForegroundColor = ConsoleColor.Red;
+                                              Console.WriteLine("Book ID cannot be negative or zero.");
+                                              Console.ResetColor();
+                                          }
                                         string title = ReadString("enter title: ");
                                         string author = ReadString("enter author: ");
                                         library.AddBook(new Book(bid, title, author));
@@ -132,7 +146,16 @@
                     
                                     case 2:  //add member
 
-                                        int mid = ReadInt("enter member id: ");
+                                          int mid;
+                                                while (true)
+                                       {
+                                           mid = ReadInt("Enter book id: ");
+                                           if (mid > 0) break;
+                                    
+                                           Console.ForegroundColor = ConsoleColor.Red;
+                                           Console.WriteLine("Book ID cannot be negative or zero.");
+                                           Console.ResetColor();
+                                       }
                                         string name = ReadString("enter name: ");
                                         library.AddMember(new Member(mid, name));
                     
@@ -171,8 +194,27 @@
                                         library.listOfMember();
                                         
                                         break;
-                    
-                                    case 8:  // exit
+                                    case 8: // edit book
+                                        int ebid = ReadInt("enter book id: ");
+                                        string newTitle = ReadString("enter new title: ");
+                                        string newAuthor = ReadString("enter new author: ");
+                                        library.EditBook(ebid, newTitle, newAuthor);
+                                        break;
+                                    
+                                    case 9: // edit member
+                                        int emid = ReadInt("enter member id: ");
+                                        string newName = ReadString("enter new name: ");
+                                        library.EditMember(emid, newName);
+                                        break;
+                                    
+                                    case 10: // remove all books
+                                        library.RemoveAllBooks();
+                                        break;
+                                    
+                                    case 11: // remove all members
+                                        library.RemoveAllMembers();
+                                        break;
+                                    case 12:  // exit
                                         
                                         return;
                                 }
@@ -185,7 +227,6 @@
                     
                     }
                     //-----------------end main------------------
-                   
-        }
+                          
     }
 }
