@@ -3,74 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Library_System_Group2
-{
-    
-        public int Id;
-        public string Name;
-        public int[] BorrowedBooks;
-        public int BorrowedCount;
-        public Member(int id, string name)
+{   
+ public class Member
+  {
+      public int Id;
+      public string Name;
+      public int[] BorrowedBooks;
+      public int BorrowedCount;
+      public Member(int id, string name)
         {
-            Id = id;
-            Name = name;
-            BorrowedBooks = new int[3];
-            BorrowedCount = 0;
+          Id = id;
+          Name = name;
+          BorrowedBooks = new int[3];
+          BorrowedCount = 0;
         }
-        public override string ToString()
+      public override string ToString()
+      {
+        return $"ID: {Id}, Name: {Name}, Borrowed Books: {BorrowedCount}";
+      }
+    public override bool Equals(object? obj)
+    {
+        if (obj is Member b)
         {
-            return $"ID: {Id}, Name: {Name}, Borrowed Books: {BorrowedCount}";
+            return this.Id == b.Id;
+        }
+        return false;
+    }
+/////////////////MBorrowBook///////////////
+    public bool MBorrowBook(int id)
+    {
 
-        }
-        public override bool Equals(object? obj)
+        if (BorrowedCount < BorrowedBooks.Length)
         {
-            if (obj is Member b)
-            {
-                return this.Id == b.Id;
-            }
+            BorrowedBooks[BorrowedCount] = id;
+            BorrowedCount++;
+            return true;
+        }
+        else
+        {
+            Console.WriteLine($"This member can not borrow more than book {BorrowedBooks.Length} ");
             return false;
         }
-        public bool MBorrowBook(int id)
+    }
+/////////////////MReturnBook///////////////
+    public bool MReturnBook(int BookId)
+    {
+        int index = -1;
+        for (int i = 0; i < BorrowedCount; i++)
         {
+            if (BorrowedBooks[i] == BookId)
+            {
+                index = i;
+                break;
+            }
 
-            if (BorrowedCount < BorrowedBooks.Length)
-            {
-                BorrowedBooks[BorrowedCount] = id;
-                BorrowedCount++;
-                return true;
-            }
-            else
-            {
-                Console.WriteLine($"This member can not borrow more than book {BorrowedBooks.Length} ");
-                return false;
-            }
         }
-        public bool MReturnBook(int BookId)
+        if (index != -1)
         {
-            int index = -1;
-            for (int i = 0; i < BorrowedCount; i++)
+            for (int i = index; i < BorrowedCount - 1; i++)
             {
-                if (BorrowedBooks[i] == BookId)
-                {
-                    index = i;
-                    break;
-                }
-
+                BorrowedBooks[i] = BorrowedBooks[i + 1];
             }
-            if (index != -1)
-            {
-                for (int i = index; i < BorrowedCount - 1; i++)
-                {
-                    BorrowedBooks[i] = BorrowedBooks[i + 1];
-                }
-                BorrowedBooks[BorrowedCount - 1] = 0;
-                BorrowedCount--;
-
-                return true;
-
-            }
-            return false;
-
-        }
+            BorrowedBooks[BorrowedCount - 1] = 0;
+            BorrowedCount--;
+            return true;
+        }
+        return false;
+     }
+        
+  }
 }
