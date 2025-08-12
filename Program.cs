@@ -149,7 +149,7 @@
                                           int mid;
                                                 while (true)
                                        {
-                                           mid = ReadInt("Enter book id: ");
+                                           mid = ReadInt("Enter member id: ");
                                            if (mid > 0) break;
                                     
                                            Console.ForegroundColor = ConsoleColor.Red;
